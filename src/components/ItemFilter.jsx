@@ -15,7 +15,7 @@ const ItemFilter = () => {
     <div className="">
       ItemFilter {items}
       <div className="rounded">
-        <input onChange={doFilterChange} type="text" id="itemFilter" />
+        <input onChange={doFilterChange} type="text" className="p-2 mt-2 mb-4 rounded w-full " id="itemFilter" />
       </div>
     </div>
   );

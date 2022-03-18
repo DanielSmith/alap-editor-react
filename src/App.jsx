@@ -51,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="App  bg-teal-900 " onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragEnd={handleDragEnd} onDrop={handleDrop}>
+    <div className=" bg-teal-900 min-h-screen " onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragEnd={handleDragEnd} onDrop={handleDrop}>
       <div className="flex justify-center  gap-10   text-2xl p-4">
         {/* <!-- header --> */}
 
@@ -64,7 +64,7 @@ function App() {
 
       {/* <!-- main portion --> */}
       <div className="flex gap-10">
-        <div className="flex flex-col  px-20  border rounded ">
+        <div className="flex flex-col  px-10   rounded ">
           <ItemFilter />
           <ItemList />
         </div>
