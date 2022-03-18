@@ -5,24 +5,31 @@ const useStore = create(
   devtools((set) => ({
     items: 0,
     alapData: {},
+    editItems: [],
     filter: null,
-
-    increaseItems: () =>
-      set((state) => ({
-        items: state.items + 1,
-      })),
 
     importData: (data) =>
       set((state) => ({
         alapData: data,
       })),
 
-    addData: (data) => {},
-
     updateFilter: (data) =>
-      set((state_) => ({
+      set((state) => ({
         filter: data,
       })),
+
+    addEditItem: (data) => {
+      // we use Set to assure no duplicates
+      set((state) => ({
+        editItems: [...new Set([...state.editItems, data])],
+      }));
+    },
+
+    cancelEditItem: (data) => {
+      set((state) => ({
+        editItems: state.editItems.filter((item) => item !== data),
+      }));
+    },
 
     // filteredKeys() {
     //   if (this.displayFilter === "") {

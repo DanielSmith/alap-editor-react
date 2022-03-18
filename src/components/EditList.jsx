@@ -6,17 +6,16 @@ import EditItem from './EditItem';
 
 const EditList = () => {
   const editItems = useStore((state) => state.editItems);
-  const items = useStore((state) => state.items);
 
   return (
     <div className="">
-      EditList {items} {editItems}
       {editItems.map((curItem, index) => (
-        <EditItem item={curItem} />
+        <div className="border-green-800 hover:border-green-500  mb-4 rounded-md border-2 pt-4" key={curItem}>
+          <EditItem item={curItem} />
+        </div>
       ))}
     </div>
   );
 };
 
 export default EditList;
-// <div key="index">{curItem}</div>

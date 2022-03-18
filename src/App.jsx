@@ -3,17 +3,16 @@ import { handleDragEnd, handleDragOver, handleDragEnter, handleDrop } from './ut
 
 import { useStore } from './store/states';
 
-import './App.css';
+import './styles/App.css';
 import TopTest from './components/TopTest';
 import ItemFilter from './components/ItemFilter';
 import ItemList from './components/ItemList';
 import AlapWrapper from './components/AlapWrapper';
+import EditList from './components/EditList';
 
-import { XIcon, MinusCircleIcon, DuplicateIcon } from '@heroicons/react/solid';
 import ShortUniqueId from 'short-unique-id';
 
 import { alapConfig } from './Config.js';
-// import ShortUniqueId from 'short-unique-id';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,26 +20,22 @@ function App() {
   const [topSection, setTopSection] = useState(true);
   const [allEditEntries, setAllEditEntries] = useState([]);
 
-  const items = useStore((state) => state.items);
   const filter = useStore((state) => state.filter);
 
   const suid = new ShortUniqueId();
 
   const importData = useStore((state) => state.importData);
+  // const alapData = useStore((state) => state.alapData);
 
   useEffect(() => {
     // Happens on mount
     importData(alapConfig);
-
     return () => {
       // Optional; clean up before unmount
     };
   }, [alapConfig]);
 
-  const increaseItems = useStore((state) => state.increaseItems);
-
   const toggleTop = () => {
-    increaseItems();
     setTopSection(!topSection);
   };
 
@@ -63,7 +58,7 @@ function App() {
         <button className="bg-blue-600 text-yellow-200 p-4   rounded-lg  shadow-xl  ">Add new Alap item {filter} </button>
 
         <button onClick={toggleTop} className="bg-blue-600 text-yellow-200 p-4   rounded-lg  shadow-xl">
-          Toggle test menu {items}
+          Toggle test menu
         </button>
       </div>
 
@@ -73,10 +68,11 @@ function App() {
           <ItemFilter />
           <ItemList />
         </div>
-        <div className="flex-col border">
+        <div className="flex-col ">
           {topSection && <TopTest />}
           <AlapWrapper />
 
+          <EditList />
           <div className="row">rtowwowoi</div>
         </div>
       </div>
