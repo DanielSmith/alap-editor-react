@@ -63,8 +63,8 @@ function App() {
       </div>
 
       {/* <!-- main portion --> */}
-      <div className="flex gap-10">
-        <div className="flex flex-col  px-10   rounded ">
+      <div className="flex gap-10 ">
+        <div className="flex flex-col w-96  px-10 rounded ">
           <ItemFilter />
           <ItemList />
         </div>

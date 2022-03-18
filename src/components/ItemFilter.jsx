@@ -13,9 +13,8 @@ const ItemFilter = () => {
 
   return (
     <div className="">
-      ItemFilter {items}
       <div className="rounded">
-        <input onChange={doFilterChange} type="text" className="p-2 mt-2 mb-4 rounded w-full " id="itemFilter" />
+        <input onChange={doFilterChange} type="text" placeholder="item filter" className="p-2 py-4 mt-2 mb-4 rounded w-full " id="itemFilter" />
       </div>
     </div>
   );

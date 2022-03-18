@@ -69,7 +69,7 @@ const ItemList = () => {
   return (
     <section>
       {dialogActive && <Dialog cancelHandler={cancelHandler} confirmHandler={confirmHandler} />}
-      <div className="text-6  gap-3 flex flex-col border-3">
+      <div className="text-6  gap-3 flex flex-col border-3  ">
         {filterItems.map((curItem, index) => (
           <div key={index} className="flex p-2  group shadow-xlg  bg-green-700 hover:bg-green-600  border-1   rounded-lg contentcenter">
             <button className="opacity-100  text-left w-3/4 truncate overflow-ellipsis py-2 px-4  overflow-hidden" onClick={() => editEntry(curItem)}>

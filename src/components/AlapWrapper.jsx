@@ -23,11 +23,7 @@ const AlapWrapper = () => {
   // const curItem = alapData.allLinks['bmwe36'];
   return (
     <div>
-      <p></p>
-
-      <ul>
-        <li>hello</li>
-      </ul>
+      <hr />
     </div>
   );
 };
