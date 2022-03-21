@@ -8,8 +8,17 @@ const EditItem = ({ item }) => {
 
   const str = JSON.stringify(cur);
 
+  let isExisting = true;
+  if (cur.newItem) {
+    isExisting = false;
+  }
+
   const handleCancel = (item) => {
     cancelEditItem(item);
+  };
+
+  const handleUpdate = (item) => {
+    alert(item);
   };
 
   return (
@@ -20,7 +29,16 @@ const EditItem = ({ item }) => {
           <label className="tracking-wide text-gray-200 text-md font-bold mb-2" htmlFor={'listItem_' + item}>
             Item ID
           </label>
-          <input className="p-2 rounded-md w-full" aria-label="enter item id" type="text" placeholder="itemId" defaultValue={item} name={'listItemID_' + item} id={'listItemID_' + item} />
+          <input
+            className="p-2 rounded-md w-full"
+            aria-label="enter item id"
+            type="text"
+            placeholder="itemId"
+            disabled={isExisting}
+            defaultValue={item}
+            name={'listItemID_' + item}
+            id={'listItemID_' + item}
+          />
         </div>
         {/* <!-- label --> */}
         <div className="w-1/2 px-2">
@@ -53,7 +71,9 @@ const EditItem = ({ item }) => {
           </button>
         </div>
         <div className="px-2 space-x-2">
-          <button className="bg-blue-700 p-1 w-48 px-4 hover:drop-shadow-xl hover:text-teal-100 text-white rounded-2xl disabled:opacity-60">Update Item</button>
+          <button className="bg-blue-700 p-1 w-48 px-4 hover:drop-shadow-xl hover:text-teal-100 text-white rounded-2xl disabled:opacity-60" onClick={() => handleUpdate(item)}>
+            Update Item
+          </button>
         </div>
       </div>
     </div>

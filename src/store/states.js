@@ -1,5 +1,6 @@
 import { devtools } from 'zustand/middleware';
 import create from 'zustand';
+import produce from 'immer';
 
 const useStore = create(
   devtools((set) => ({
@@ -17,6 +18,25 @@ const useStore = create(
       set((state) => ({
         filter: data,
       })),
+
+    // we need to try immer
+
+    setItem: (data) => {
+      // staalapData.allLinks[data.itemID] = data;
+      // set((state)) => ({
+      //   alapData.allLinks: [...state.alapData.allLinks, {
+      //     data
+      //   }]
+      // })
+    },
+
+    // patchItem: (payload) =>
+    // set(
+    //   produce((draft) => {
+    //     const item = draft.kdramas.find((el) => el.id === payload.id);
+    //     item.label = payload.;
+    //   })
+    // ),
 
     addEditItem: (data) => {
       // we use Set to assure no duplicates

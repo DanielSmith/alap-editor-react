@@ -9,12 +9,13 @@ import ItemFilter from './components/ItemFilter';
 import ItemList from './components/ItemList';
 import AlapWrapper from './components/AlapWrapper';
 import EditList from './components/EditList';
-
 import ShortUniqueId from 'short-unique-id';
 
 import { alapConfig } from './Config.js';
+import { combine } from 'zustand/middleware';
 
 function App() {
+  const suid = new ShortUniqueId();
   const [count, setCount] = useState(0);
 
   const [topSection, setTopSection] = useState(true);
@@ -22,18 +23,38 @@ function App() {
 
   const filter = useStore((state) => state.filter);
 
-  const suid = new ShortUniqueId();
-
   const importData = useStore((state) => state.importData);
   // const alapData = useStore((state) => state.alapData);
 
   useEffect(() => {
     // Happens on mount
-    importData(alapConfig);
+
+    // we may be getting incoming links which have no id
+    const alapData = addItemIds(alapConfig);
+    console.log(JSON.stringify(alapData));
+    importData(alapData);
     return () => {
       // Optional; clean up before unmount
     };
   }, [alapConfig]);
+
+  const addItemIds = (config) => {
+    const workingData = { ...config };
+
+    // not good, it would mean we have no data to work with, so we will punt...
+    if (!workingData.allLinks) {
+      workingData.allLinks = {};
+      return workingData;
+    }
+
+    for (const curItem in workingData.allLinks) {
+      if (!workingData.allLinks[curItem].id) {
+        workingData.allLinks[curItem].id = suid();
+      }
+    }
+
+    return workingData;
+  };
 
   const toggleTop = () => {
     setTopSection(!topSection);
@@ -73,7 +94,6 @@ function App() {
           <AlapWrapper />
 
           <EditList />
-          <div className="row">rtowwowoi</div>
         </div>
       </div>
     </div>

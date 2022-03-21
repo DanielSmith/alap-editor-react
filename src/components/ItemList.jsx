@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useStore } from '../store/states';
+import ShortUniqueId from 'short-unique-id';
 
 import Dialog from './Dialog';
 
-import { XIcon, MinusCircleIcon, DuplicateIcon } from '@heroicons/react/solid';
+import { XIcon, MinusCircleIcon, DuplicateIcon, CurrencyBangladeshiIcon } from '@heroicons/react/solid';
 
 const ItemList = () => {
   const items = useStore((state) => state.items);
@@ -11,12 +12,25 @@ const ItemList = () => {
   const filter = useStore((state) => state.filter);
   // const edt = useStore((state) => state.edt);
 
+  const setItem = useStore((state) => state.setItem);
   const addEditItem = useStore((state) => state.addEditItem);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
 
   const [filterItems, setFilterItems] = useState([]);
   const [dialogActive, setDialogActive] = useState(false);
   const [possibleRemoveItem, setPossibleRemoveItem] = useState(null);
+
+  const suid = new ShortUniqueId();
+
+  // for new items, clone from this
+  const editEntryItem = {
+    id: null,
+    itemID: '',
+    label: '',
+    url: '',
+    tags: '',
+    newItem: null,
+  };
 
   useEffect(() => {
     // Happens on mount
@@ -49,9 +63,30 @@ const ItemList = () => {
   const cloneEntry = (item) => {
     console.log(item);
     console.log('cloneEntry  ' + item);
+
+    const cloneName = suid();
+    // alert(cloneName);
+
+    const curEntryItem = Object.create(alapData.allLinks[item]);
+    curEntryItem.itemID = `${item}_copy_${cloneName}`;
+
+    // we expect the user will edit the ID, so we have a copy of the original
+    // that we can clean up
+    curEntryItem.originalItemID = `${item}_copy_${cloneName}`;
+    curEntryItem.newItem = true;
+    // setItem(curEntryItem);
+    alapData.allLinks[curEntryItem.itemID] = curEntryItem;
+
+    addEditItem(curEntryItem.itemID);
+
+    // create a new item
+    // add it to the master list
+    // add it to the edit list
   };
 
   const editEntry = (item) => {
+    const str = JSON.stringify(alapData.allLinks[item]);
+    // alert(str);
     addEditItem(item);
   };
 
