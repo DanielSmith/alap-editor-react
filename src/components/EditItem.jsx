@@ -4,6 +4,7 @@ const EditItem = ({ item }) => {
   // const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
+  const patchItem = useStore((state) => state.patchItem);
   const cur = alapData.allLinks[item];
 
   const str = JSON.stringify(cur);
@@ -19,6 +20,7 @@ const EditItem = ({ item }) => {
 
   const handleUpdate = (item) => {
     alert(item);
+    patchItem(item, { dls: 'test', alap: 'foo' });
   };
 
   return (

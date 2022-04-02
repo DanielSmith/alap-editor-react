@@ -21,11 +21,7 @@ const AlapWrapper = () => {
   // console.dir(alapData);
 
   // const curItem = alapData.allLinks['bmwe36'];
-  return (
-    <div>
-      <hr />
-    </div>
-  );
+  return <div className="mb-4"></div>;
 };
 
 export default AlapWrapper;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useStore } from '../store/states';
+import { setScrollbarFade } from '../utils/scrollbars';
 import ShortUniqueId from 'short-unique-id';
 
 import Dialog from './Dialog';
@@ -15,6 +16,7 @@ const ItemList = () => {
   const setItem = useStore((state) => state.setItem);
   const addEditItem = useStore((state) => state.addEditItem);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
+  const patchItem = useStore((state) => state.patchItem);
 
   const [filterItems, setFilterItems] = useState([]);
   const [dialogActive, setDialogActive] = useState(false);
@@ -32,8 +34,14 @@ const ItemList = () => {
     newItem: null,
   };
 
+  // just once..
+  useEffect(() => {
+    setScrollbarFade('itemList');
+  }, []);
+
   useEffect(() => {
     // Happens on mount
+
     if (alapData.allLinks) {
       let curItems = [];
 
@@ -75,7 +83,8 @@ const ItemList = () => {
     curEntryItem.originalItemID = `${item}_copy_${cloneName}`;
     curEntryItem.newItem = true;
     // setItem(curEntryItem);
-    alapData.allLinks[curEntryItem.itemID] = curEntryItem;
+    // alapData.allLinks[curEntryItem.itemID] = curEntryItem;
+    patchItem(curEntryItem.itemID, curEntryItem);
 
     addEditItem(curEntryItem.itemID);
 
@@ -102,12 +111,12 @@ const ItemList = () => {
   };
 
   return (
-    <section>
+    <section className="pt-[5rem] w-full ">
       {dialogActive && <Dialog cancelHandler={cancelHandler} confirmHandler={confirmHandler} />}
-      <div className="text-6  gap-3 flex flex-col border-3  ">
+      <div className="  text-yellow-200 overflow-y-scroll bg-blue-800 p-4 mt-4 flex flex-col  gap-6  h-[calc(90vh_-_10rem)]   border-3  box " id="itemList">
         {filterItems.map((curItem, index) => (
-          <div key={index} className="flex p-2  group shadow-xlg  bg-green-700 hover:bg-green-600  border-1   rounded-lg contentcenter">
-            <button className="opacity-100  text-left w-3/4 truncate overflow-ellipsis py-2 px-4  overflow-hidden" onClick={() => editEntry(curItem)}>
+          <div key={index} className="flex p-2  group shadow-xlg  bg-blue-700 hover:bg-blue-600  border-1  gap-4   rounded-lg contentcenter">
+            <button className="opacity-100  text-left w-[10rem] truncate overflow-ellipsis py-2 px-4  overflow-hidden" onClick={() => editEntry(curItem)}>
               {curItem}
             </button>
             <XIcon

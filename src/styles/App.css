@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.box {
+     /* position: relative;
+  top: 20px;
+    padding: 20px;
+    margin: 50px;
+    width: 300px;
+    height: 200px;
+    overflow-y: scroll;
+    background: #eeddee;  */
+  
+    scrollbar-color: #2563EB #1E3A8A;
+    -moz-transition: scrollbar-color 0.5s ease-in;
+    -o-transition: scrollbar-color 0.5s ease-in;
+    -webkit-transition: scrollbar-color 0.5s ease-in;
+    transition: scrollbar-color 0.5s ease-in;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .visible-scroll::-webkit-scrollbar-track {
+    background: #eeddee;
+    transition: all 2s ease-in;
+  }
+  
+  .visible-scroll::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 45, 255, 0.15);
+    border-radius: 12px;
+  
+    border: 0px;
+    transition: all 2s ease-in;
+  }
+  
+  .faded-scroll::-webkit-scrollbar-track {
+    background:  #134E4A;
+  }
+  
+  .faded-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(20, 20, 20, 0.1);
+    border-radius: 20px;
+    border: 0px;
+  }
+  

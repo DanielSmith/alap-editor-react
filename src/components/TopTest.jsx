@@ -4,18 +4,12 @@ import { useStore } from '../store/states';
 const TopTest = () => {
   const items = useStore((state) => state.items);
   return (
-    <div className="">
-      <div className="text-6xl text-blue-400">
-        <label htmlFor="testinput" className="col-sm-2 col-form-label">
-          label:
-        </label>
-        <div className="col-sm-5">
-          <input id="testinput" type="text" className="form-control" />
-        </div>
-        <div className="col-sm-2">
-          <a href="#"> some link {items} </a>
-        </div>
-      </div>
+    <div className=" flex flex-row grow align-middle justify-self-stretch mt-4 ">
+      <label className="text-gray-100 text-md font-bold p-2 pr-6">Alap Data: </label>
+
+      <input className="p-2  rounded-md w-1/2" aria-label="sample query (such as item ids, or a tag)" placeholder="enter sample query (such as item ids, or a .tag)" type="text" />
+
+      <a className="alap text-gray-100 underlinetext-md font-bold px-4 py-2 pr-6">Sample Link....</a>
     </div>
   );
 };

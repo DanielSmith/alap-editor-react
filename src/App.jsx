@@ -31,7 +31,7 @@ function App() {
 
     // we may be getting incoming links which have no id
     const alapData = addItemIds(alapConfig);
-    console.log(JSON.stringify(alapData));
+    // console.log(JSON.stringify(alapData));
     importData(alapData);
     return () => {
       // Optional; clean up before unmount
@@ -72,24 +72,26 @@ function App() {
   };
 
   return (
-    <div className=" bg-teal-900 min-h-screen " onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragEnd={handleDragEnd} onDrop={handleDrop}>
-      <div className="flex justify-center  gap-10   text-2xl p-4">
-        {/* <!-- header --> */}
+    <div className="bg-blue-800 min-h-screen " onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragEnd={handleDragEnd} onDrop={handleDrop}>
+      <div className="fixed mx-auto w-full z-10  bg-opacity-60 ">
+        <div className="flex justify-center  gap-10    h-[calc(h-full_-_10rem)]  text-2xl p-4">
+          {/* <!-- header --> */}
 
-        <button className="bg-blue-600 text-yellow-200 p-4   rounded-lg  shadow-xl  ">Add new Alap item {filter} </button>
-
-        <button onClick={toggleTop} className="bg-blue-600 text-yellow-200 p-4   rounded-lg  shadow-xl">
-          Toggle test menu
-        </button>
+          <button className="bg-blue-600 text-yellow-200 p-4 rounded-lg  shadow-xl ">Add new Alap item</button>
+        </div>
       </div>
 
       {/* <!-- main portion --> */}
-      <div className="flex gap-10 ">
-        <div className="flex flex-col w-96  px-10 rounded ">
-          <ItemFilter />
+      <div className="flex gap-10 pt-20 w-full">
+        <div className="relative  px-10 ">
+          <div className="fixed flex z-20 p-4 ">
+            <div className=" w-[16rem] ">
+              <ItemFilter />
+            </div>
+          </div>
           <ItemList />
         </div>
-        <div className="flex-col ">
+        <div className="fixed ml-[22rem] p-4 flex-col  w-2/3 ">
           {topSection && <TopTest />}
           <AlapWrapper />
 

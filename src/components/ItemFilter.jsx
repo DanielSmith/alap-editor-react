@@ -12,10 +12,8 @@ const ItemFilter = () => {
   };
 
   return (
-    <div className="">
-      <div className="rounded">
-        <input onChange={doFilterChange} type="text" placeholder="item filter" className="p-2 py-4 mt-2 mb-4 rounded w-full " id="itemFilter" />
-      </div>
+    <div className=" ">
+      <input onChange={doFilterChange} type="text" placeholder="item filter" className="p-2  mt-4 mb-4 rounded-lg w-full " id="itemFilter" />
     </div>
   );
 };

@@ -30,13 +30,12 @@ const useStore = create(
       // })
     },
 
-    // patchItem: (payload) =>
-    // set(
-    //   produce((draft) => {
-    //     const item = draft.kdramas.find((el) => el.id === payload.id);
-    //     item.label = payload.;
-    //   })
-    // ),
+    patchItem: (whichItem, payload) =>
+      set(
+        produce((draft) => {
+          draft.alapData.allLinks[whichItem] = payload;
+        })
+      ),
 
     addEditItem: (data) => {
       // we use Set to assure no duplicates
