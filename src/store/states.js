@@ -30,12 +30,14 @@ const useStore = create(
       // })
     },
 
-    patchItem: (whichItem, payload) =>
+    patchItem: (whichItem, payload) => {
+      console.dir(payload);
       set(
         produce((draft) => {
           draft.alapData.allLinks[whichItem] = payload;
         })
-      ),
+      );
+    },
 
     removeItem: (payload) =>
       set(

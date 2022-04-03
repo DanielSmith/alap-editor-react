@@ -86,7 +86,7 @@ function App() {
           {/* <!-- header --> */}
 
           <button className="bg-blue-600 text-yellow-200 p-4 rounded-lg  shadow-xl" onClick={createNewItem}>
-            Add new Alap item
+            Add new Alap menu item
           </button>
         </div>
       </div>

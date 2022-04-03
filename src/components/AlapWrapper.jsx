@@ -12,13 +12,13 @@ const AlapWrapper = ({ alapConfig }) => {
 
   useEffect(() => {
     myAlap = new alap();
-    myAlap.configure({ alapConfig }, 'vue');
+    myAlap.configure({ alapConfig }, 'react');
     myAlap.dumpConfig();
   }, [alap]);
 
   useEffect(() => {
     if (alapData && alapData.allLinks) {
-      console.dir(alapData.allLinks);
+      // console.dir(alapData.allLinks);
     }
   }, [alapData]);
 

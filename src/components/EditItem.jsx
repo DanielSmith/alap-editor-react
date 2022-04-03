@@ -8,11 +8,11 @@ const EditItem = ({ item }) => {
   const patchItem = useStore((state) => state.patchItem);
 
   const [cur, setCur] = useState(alapData.allLinks[item]);
+  const [isExisting, setIsExisting] = useState(alapData.allLinks[item].newItem === true ? false : true);
 
-  let isExisting = true;
-  if (cur.newItem) {
-    isExisting = false;
-  }
+  // if (cur.newItem) {
+  //   setIsExisting(false);
+  // }
 
   const handleCancel = (item) => {
     cancelEditItem(item);
@@ -25,6 +25,7 @@ const EditItem = ({ item }) => {
     setCur({
       ...cur,
       [which]: e.target.value,
+      newItem: false,
     });
 
     console.log(cur);
@@ -36,12 +37,19 @@ const EditItem = ({ item }) => {
     console.log(itemToCheck);
     console.log(cur);
     cancelEditItem(itemToCheck);
+
+    const curCopy = { ...cur };
+    delete curCopy.newItem;
+    setCur({ ...curCopy });
+
     if (!isExisting && cur.itemID !== itemToCheck) {
+      console.log('remo', cur);
       removeItem(itemToCheck);
       patchItem(cur.itemID, cur);
     } else {
       patchItem(itemToCheck, cur);
     }
+    setIsExisting(true);
   };
 
   return (

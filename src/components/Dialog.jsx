@@ -6,10 +6,8 @@ const Dialog = ({ cancelHandler, confirmHandler }) => {
 
   useEffect(() => {
     addListeners();
-    console.log('in ue');
 
     return () => {
-      console.log('remo');
       removeListeners();
     };
   });
@@ -42,7 +40,7 @@ const Dialog = ({ cancelHandler, confirmHandler }) => {
   return (
     <div id="dialogBackground" className="dialog-background">
       <dialog className=" bg-hex-eee4dd border-gray-200 border-4 rounded-md filter drop-shadow-2xl" open>
-        <p className="p-10 text-center text-2xl">Remove item removeItemID?</p>
+        <p className="p-10 text-center text-2xl">Remove item?</p>
 
         <div className="flex flex-row w-full p-2 flex-wrap justify-evenly">
           <div className="px-2 space-x-2 mb-2">

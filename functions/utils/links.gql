@@ -1,0 +1,9 @@
+type AlapConfig {
+  name: String!
+  jsondata: String!
+}
+
+type Query {
+  allConfigs: [AlapConfig!]!
+  configByPage(name: String!): [AlapConfig!]
+}

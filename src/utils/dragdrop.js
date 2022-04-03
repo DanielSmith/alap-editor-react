@@ -21,7 +21,19 @@ const handleDrop = async (event) => {
 
   const link = event.dataTransfer.getData('Text');
 
-  console.log('drag  DRop', link);
+  alert(link);
+  try {
+    // need a better way of specifying where the netlify server is for dev..
+    const res = await fetch('/.netlify/functions/get-site-data', {
+      method: 'POST',
+      body: JSON.stringify({ sitelink: link }),
+    });
+
+    const data = await res.json();
+    console.dir(data);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export { handleDragEnd, handleDragEnter, handleDragOver, handleDrop };

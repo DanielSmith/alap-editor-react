@@ -95,12 +95,10 @@ const ItemList = () => {
 
   const editEntry = (item) => {
     const str = JSON.stringify(alapData.allLinks[item]);
-    // alert(str);
     addEditItem(item);
   };
 
   const cancelHandler = () => {
-    alert('cancel');
     setDialogActive(false);
   };
 
