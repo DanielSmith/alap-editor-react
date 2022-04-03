@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useStore } from '../store/states';
 
 const EditItem = ({ item }) => {
-  // const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
   const removeItem = useStore((state) => state.removeItem);
@@ -10,16 +9,12 @@ const EditItem = ({ item }) => {
 
   const [cur, setCur] = useState(alapData.allLinks[item]);
 
-  const str = JSON.stringify(cur);
-
   let isExisting = true;
   if (cur.newItem) {
     isExisting = false;
   }
 
   const handleCancel = (item) => {
-    console.log(item);
-
     cancelEditItem(item);
     if (!isExisting) {
       removeItem(item);
@@ -31,8 +26,6 @@ const EditItem = ({ item }) => {
       ...cur,
       [which]: e.target.value,
     });
-    console.log(cur);
-    // patchItem(item, { dls: 'test', alap: 'foo' });
   };
 
   const handleUpdate = () => {
@@ -111,6 +104,8 @@ const EditItem = ({ item }) => {
           />
         </div>
       </div>
+
+      {/* <!-- edit item options --> */}
       <div className="flex flex-row w-full p-4 flex-wrap justify-evenly">
         <div className="px-2 space-x-2 filter mb-2 drop-shadow-2xl">
           <button className="bg-gray-400 p-1 w-48 px-4 text-teal-900 rounded-2xl" onClick={() => handleCancel(item)}>
