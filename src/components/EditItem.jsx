@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useStore } from '../store/states';
 
 const EditItem = ({ item }) => {
@@ -7,7 +8,7 @@ const EditItem = ({ item }) => {
   const removeItem = useStore((state) => state.removeItem);
   const patchItem = useStore((state) => state.patchItem);
 
-  const cur = alapData.allLinks[item];
+  const [cur, setCur] = useState(alapData.allLinks[item]);
 
   const str = JSON.stringify(cur);
 
@@ -25,9 +26,18 @@ const EditItem = ({ item }) => {
     }
   };
 
-  const handleUpdate = (item) => {
-    alert(item);
-    patchItem(item, { dls: 'test', alap: 'foo' });
+  const handleUpdateField = (e, which) => {
+    setCur({
+      ...cur,
+      [which]: e.target.value,
+    });
+    console.log(cur);
+    // patchItem(item, { dls: 'test', alap: 'foo' });
+  };
+
+  const handleUpdate = () => {
+    patchItem(item, cur);
+    cancelEditItem(item);
   };
 
   return (
@@ -45,6 +55,7 @@ const EditItem = ({ item }) => {
             placeholder="itemId"
             disabled={isExisting}
             defaultValue={item}
+            onChange={(e) => handleUpdateField(e, 'itemID')}
             name={'listItemID_' + item}
             id={'listItemID_' + item}
           />
@@ -54,7 +65,16 @@ const EditItem = ({ item }) => {
           <label className="tracking-wide text-gray-200 text-md font-bold mb-2" htmlFor={'itemLabel_' + item}>
             Label
           </label>
-          <input className="p-2 rounded-md w-full" aria-label="enter label" type="text" placeholder="label" defaultValue={cur.label} name="'itemLabel_' + item" id="'itemLabel_' + 'item" />
+          <input
+            className="p-2 rounded-md w-full"
+            aria-label="enter label"
+            type="text"
+            placeholder="label"
+            defaultValue={cur.label}
+            onChange={(e) => handleUpdateField(e, 'label')}
+            name="'itemLabel_' + item"
+            id="'itemLabel_' + 'item"
+          />
         </div>
       </div>
       <div className="flex px-10">
@@ -63,14 +83,32 @@ const EditItem = ({ item }) => {
           <label className="tracking-wide text-gray-200 text-md font-bold mb-2" htmlFor="itemURL_' + item">
             URL
           </label>
-          <input className="p-2 rounded-md w-full" aria-label="enter url" type="text" placeholder="label" defaultValue={cur.url} name="'itemLabel_' + item" id="'itemLabel_' + 'item" />
+          <input
+            className="p-2 rounded-md w-full"
+            aria-label="enter url"
+            type="text"
+            placeholder="label"
+            defaultValue={cur.url}
+            onChange={(e) => handleUpdateField(e, 'url')}
+            name="'itemURL_' + item"
+            id="'itemURL_' + 'item"
+          />
         </div>
         {/* <!-- tags--> */}
         <div className="w-full md:w-1/2 p-2">
           <label className="tracking-wide text-gray-200 text-md font-bold mb-2" htmlFor="itemTags_' + item">
             Tags
           </label>
-          <input className="p-2 rounded-md w-full" aria-label="enter tags" type="text" placeholder="label" defaultValue={cur.tags} name="'itemTags_' + item" id="'itemLabel_' + 'item" />
+          <input
+            className="p-2 rounded-md w-full"
+            aria-label="enter tags"
+            type="text"
+            placeholder="label"
+            defaultValue={cur.tags}
+            onChange={(e) => handleUpdateField(e, 'tags')}
+            name="'itemTags_' + item"
+            id="'itemTags_' + 'item"
+          />
         </div>
       </div>
       <div className="flex flex-row w-full p-4 flex-wrap justify-evenly">
