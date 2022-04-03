@@ -26,11 +26,22 @@ const EditItem = ({ item }) => {
       ...cur,
       [which]: e.target.value,
     });
+
+    console.log(cur);
   };
 
-  const handleUpdate = () => {
-    patchItem(item, cur);
-    cancelEditItem(item);
+  const handleUpdate = (item) => {
+    const itemToCheck = item;
+
+    console.log(itemToCheck);
+    console.log(cur);
+    cancelEditItem(itemToCheck);
+    if (!isExisting && cur.itemID !== itemToCheck) {
+      removeItem(itemToCheck);
+      patchItem(cur.itemID, cur);
+    } else {
+      patchItem(itemToCheck, cur);
+    }
   };
 
   return (

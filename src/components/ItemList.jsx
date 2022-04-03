@@ -16,6 +16,7 @@ const ItemList = () => {
   const addEditItem = useStore((state) => state.addEditItem);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
   const patchItem = useStore((state) => state.patchItem);
+  const removeItem = useStore((state) => state.removeItem);
 
   const [filterItems, setFilterItems] = useState([]);
   const [dialogActive, setDialogActive] = useState(false);
@@ -76,7 +77,10 @@ const ItemList = () => {
     // add it to the edit list
 
     const cloneName = suid();
-    const curEntryItem = Object.create(alapData.allLinks[item]);
+    console.log(alapData.allLinks[item]);
+    const curEntryItem = Object.assign({}, alapData.allLinks[item]);
+    console.log(curEntryItem);
+    curEntryItem.id = cloneName;
     curEntryItem.itemID = `${item}_copy_${cloneName}`;
 
     // we expect the user will edit the ID, so we have a copy of the original
@@ -101,9 +105,9 @@ const ItemList = () => {
   };
 
   const confirmHandler = () => {
-    alert('confirm');
     if (possibleRemoveItem) {
       cancelEditItem(possibleRemoveItem);
+      removeItem(possibleRemoveItem);
     }
     setDialogActive(false);
   };
