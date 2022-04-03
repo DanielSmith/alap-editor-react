@@ -3,16 +3,7 @@
 @tailwind utilities;
 
 
-.box {
-     /* position: relative;
-  top: 20px;
-    padding: 20px;
-    margin: 50px;
-    width: 300px;
-    height: 200px;
-    overflow-y: scroll;
-    background: #eeddee;  */
-  
+.box {  
     scrollbar-color: #2563EB #1E3A8A;
     -moz-transition: scrollbar-color 0.5s ease-in;
     -o-transition: scrollbar-color 0.5s ease-in;
@@ -26,24 +17,22 @@
   }
   
   .visible-scroll::-webkit-scrollbar-track {
-    background: #eeddee;
-    transition: all 2s ease-in;
+    background: #1E3A8A;
   }
   
   .visible-scroll::-webkit-scrollbar-thumb {
-    background-color: rgb(255, 45, 255, 0.15);
-    border-radius: 12px;
-  
+    background-color: #2563EB;
+    border-radius: 12px;    
     border: 0px;
-    transition: all 2s ease-in;
   }
   
   .faded-scroll::-webkit-scrollbar-track {
-    background:  #134E4A;
+    background-color: rgba(20, 20, 20, 0);
+    transition: all 2s ease-in;
   }
   
   .faded-scroll::-webkit-scrollbar-thumb {
-    background-color: rgba(20, 20, 20, 0.1);
+    background-color: rgba(20, 20, 20, 0);
     border-radius: 20px;
     border: 0px;
   }

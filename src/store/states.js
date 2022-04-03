@@ -37,6 +37,17 @@ const useStore = create(
         })
       ),
 
+    removeItem: (payload) =>
+      set(
+        produce((draft) => {
+          try {
+            delete draft.alapData.allLinks[payload];
+          } catch (err) {
+            console.error(err);
+          }
+        })
+      ),
+
     addEditItem: (data) => {
       // we use Set to assure no duplicates
       set((state) => ({

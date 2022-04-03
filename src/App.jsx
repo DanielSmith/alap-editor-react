@@ -22,6 +22,8 @@ function App() {
   const [allEditEntries, setAllEditEntries] = useState([]);
 
   const filter = useStore((state) => state.filter);
+  const addEditItem = useStore((state) => state.addEditItem);
+  const patchItem = useStore((state) => state.patchItem);
 
   const importData = useStore((state) => state.importData);
   // const alapData = useStore((state) => state.alapData);
@@ -61,14 +63,20 @@ function App() {
   };
 
   const createNewItem = () => {
-    const editEntryItem = {
-      id: null,
-      itemID: '',
+    const cloneName = suid();
+    const itemID = `_new_item_${cloneName}`;
+
+    const newEditEntryItem = {
+      id: cloneName,
+      itemID: itemID,
       label: '',
       url: '',
       tags: '',
-      newItem: null,
+      newItem: true,
     };
+
+    patchItem(itemID, newEditEntryItem);
+    addEditItem(itemID);
   };
 
   return (
@@ -77,7 +85,9 @@ function App() {
         <div className="flex justify-center  gap-10    h-[calc(h-full_-_10rem)]  text-2xl p-4">
           {/* <!-- header --> */}
 
-          <button className="bg-blue-600 text-yellow-200 p-4 rounded-lg  shadow-xl ">Add new Alap item</button>
+          <button className="bg-blue-600 text-yellow-200 p-4 rounded-lg  shadow-xl" onClick={createNewItem}>
+            Add new Alap item
+          </button>
         </div>
       </div>
 
@@ -93,7 +103,7 @@ function App() {
         </div>
         <div className="fixed ml-[22rem] p-4 flex-col  w-2/3 ">
           {topSection && <TopTest />}
-          <AlapWrapper />
+          <AlapWrapper alapConfig={alapConfig} />
 
           <EditList />
         </div>

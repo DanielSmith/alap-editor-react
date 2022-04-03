@@ -4,7 +4,9 @@ const EditItem = ({ item }) => {
   // const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
+  const removeItem = useStore((state) => state.removeItem);
   const patchItem = useStore((state) => state.patchItem);
+
   const cur = alapData.allLinks[item];
 
   const str = JSON.stringify(cur);
@@ -15,7 +17,12 @@ const EditItem = ({ item }) => {
   }
 
   const handleCancel = (item) => {
+    console.log(item);
+
     cancelEditItem(item);
+    if (!isExisting) {
+      removeItem(item);
+    }
   };
 
   const handleUpdate = (item) => {

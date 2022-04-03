@@ -4,9 +4,17 @@ import { useEffect } from 'react';
 import { useStore } from '../store/states';
 import alap from 'alap';
 
-const AlapWrapper = () => {
+const AlapWrapper = ({ alapConfig }) => {
   const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
+
+  let myAlap;
+
+  useEffect(() => {
+    myAlap = new alap();
+    myAlap.configure({ alapConfig }, 'vue');
+    myAlap.dumpConfig();
+  }, [alap]);
 
   useEffect(() => {
     if (alapData && alapData.allLinks) {

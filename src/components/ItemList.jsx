@@ -11,7 +11,6 @@ const ItemList = () => {
   const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
   const filter = useStore((state) => state.filter);
-  // const edt = useStore((state) => state.edt);
 
   const setItem = useStore((state) => state.setItem);
   const addEditItem = useStore((state) => state.addEditItem);
@@ -72,9 +71,11 @@ const ItemList = () => {
     console.log(item);
     console.log('cloneEntry  ' + item);
 
-    const cloneName = suid();
-    // alert(cloneName);
+    // create a new item
+    // add it to the master list
+    // add it to the edit list
 
+    const cloneName = suid();
     const curEntryItem = Object.create(alapData.allLinks[item]);
     curEntryItem.itemID = `${item}_copy_${cloneName}`;
 
@@ -85,12 +86,7 @@ const ItemList = () => {
     // setItem(curEntryItem);
     // alapData.allLinks[curEntryItem.itemID] = curEntryItem;
     patchItem(curEntryItem.itemID, curEntryItem);
-
     addEditItem(curEntryItem.itemID);
-
-    // create a new item
-    // add it to the master list
-    // add it to the edit list
   };
 
   const editEntry = (item) => {
@@ -100,10 +96,12 @@ const ItemList = () => {
   };
 
   const cancelHandler = () => {
+    alert('cancel');
     setDialogActive(false);
   };
 
   const confirmHandler = () => {
+    alert('confirm');
     if (possibleRemoveItem) {
       cancelEditItem(possibleRemoveItem);
     }
