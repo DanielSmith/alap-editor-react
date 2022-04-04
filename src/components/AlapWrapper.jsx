@@ -114,22 +114,21 @@ const AlapWrapper = ({ alapConfig }) => {
 
   return (
     <div className="relative flex flex-col" onMouseLeave={menuMouseLeaveHandler} onMouseEnter={menuMouseEnterHandler}>
-      <a className="alap text-gray-100 underlinetext-md font-bold px-4 py-2 pr-6" data-alap-linkitems=".nyc" onClick={alapClick}>
+      <a className="alap text-gray-100 underlinetext-md cursor-pointer font-bold px-4 py-2 pr-6" data-alap-linkitems=".nyc" onClick={alapClick}>
         My Sample Link....
       </a>
 
-      <div id="alapElem" className={`absolute ${displayStatus} z-10  mt-10 text-xl p-20 bg-slate-100`}>
-        stuff
-        <ul>
+      <div id="alapElem" className={`absolute ${displayStatus}   z-10 w-[400px] mt-10 text-xl p-2 bg-blue-800`}>
+        <section className="flex flex-col gap-2">
           {elementTargets.theTargets &&
             elementTargets.theTargets.map((curItem, index) => (
-              <li key={curItem}>
+              <div key={curItem} className="bg-blue-700 hover:bg-blue-600 hover:underline hover:shadow-2xl text-yellow-100 rounded-md px-3 py-1">
                 <a target="fromAlap" href={alapData.allLinks[curItem].url}>
                   {alapData.allLinks[curItem].label}
                 </a>
-              </li>
+              </div>
             ))}
-        </ul>
+        </section>
       </div>
     </div>
   );
