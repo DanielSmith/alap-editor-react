@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { handleDragEnd, handleDragOver, handleDragEnter, handleDrop } from './utils/dragdrop';
+import { handleDragEnd, handleDragOver, handleDragEnter } from './utils/dragdrop';
 
 import { useStore } from './store/states';
 
@@ -77,6 +77,58 @@ function App() {
 
     patchItem(itemID, newEditEntryItem);
     addEditItem(itemID);
+  };
+
+  const createTagFromURL = (str) => {
+    const url = document.createElement('a');
+    url.href = str;
+
+    const elems = url.hostname.split('.');
+    elems.pop();
+    return elems.join('_');
+  };
+
+  const handleDrop = async (event) => {
+    event.preventDefault();
+
+    const link = event.dataTransfer.getData('Text');
+    // const addEditItem = useStore((state) => state.addEditItem);
+    // const patchItem = useStore((state) => state.patchItem);
+
+    try {
+      // need a better way of specifying where the netlify server is for dev..
+      const res = await fetch('/.netlify/functions/get-site-data', {
+        method: 'POST',
+        body: JSON.stringify({ sitelink: link }),
+      });
+
+      const data = await res.json();
+      console.dir(data);
+
+      const url = data.res.url || link;
+      let tags = createTagFromURL(url);
+
+      if (data.res.keywords) {
+        tags += `, ${data.res.keywords}`;
+      }
+
+      const cloneName = suid();
+      const itemID = `_new_item_${cloneName}`;
+
+      const newEditEntryItem = {
+        id: cloneName,
+        itemID: itemID,
+        label: data.res.title,
+        url: url,
+        tags: tags,
+        newItem: true,
+      };
+
+      patchItem(itemID, newEditEntryItem);
+      addEditItem(itemID);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
