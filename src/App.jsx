@@ -7,7 +7,6 @@ import './styles/App.css';
 import TopTest from './components/TopTest';
 import ItemFilter from './components/ItemFilter';
 import ItemList from './components/ItemList';
-import AlapWrapper from './components/AlapWrapper';
 import EditList from './components/EditList';
 import ShortUniqueId from 'short-unique-id';
 
@@ -18,7 +17,6 @@ function App() {
   const suid = new ShortUniqueId();
   const [count, setCount] = useState(0);
 
-  const [topSection, setTopSection] = useState(true);
   const [allEditEntries, setAllEditEntries] = useState([]);
 
   const filter = useStore((state) => state.filter);
@@ -56,10 +54,6 @@ function App() {
     }
 
     return workingData;
-  };
-
-  const toggleTop = () => {
-    setTopSection(!topSection);
   };
 
   const createNewItem = () => {
@@ -154,8 +148,7 @@ function App() {
           <ItemList />
         </div>
         <div className="fixed ml-[22rem] p-4 flex-col  w-2/3 ">
-          {topSection && <TopTest />}
-          <AlapWrapper alapConfig={alapConfig} />
+          <TopTest alapConfig={alapConfig} />
 
           <EditList />
         </div>
