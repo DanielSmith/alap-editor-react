@@ -7,14 +7,14 @@
 // I am going to redo this as FQL...
 // I want to be able to update, or create if needed
 
-const axios = require("axios");
-require("dotenv").config();
-const { CREATE_CONFIG } = require("./utils/linkQueries.js");
-const sendQuery = require("./utils/sendQuery");
-const formattedResponse = require("./utils/formattedResponse");
+const axios = require('axios');
+require('dotenv').config();
+const { CREATE_CONFIG } = require('./utils/linkQueries.js');
+const sendQuery = require('./utils/sendQuery');
+const formattedResponse = require('./utils/formattedResponse');
 
 exports.handler = async (event, context) => {
-  const name = "samplesave";
+  const name = 'samplesave';
   const jsondata = event.body;
 
   const variables = { name, jsondata };
@@ -25,6 +25,6 @@ exports.handler = async (event, context) => {
     return formattedResponse(200, createdLink);
   } catch (err) {
     console.error(err);
-    return formattedResponse(500, { err: "Something went wrong" });
+    return formattedResponse(500, { err: 'Something went wrong' });
   }
 };
