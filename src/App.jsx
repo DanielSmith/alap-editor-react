@@ -8,23 +8,19 @@ import TopTest from './components/TopTest';
 import ItemFilter from './components/ItemFilter';
 import ItemList from './components/ItemList';
 import EditList from './components/EditList';
+import InfoBlurb from './components/InfoBlurb';
 import ShortUniqueId from 'short-unique-id';
-
 import { alapConfig } from './Config.js';
-import { combine } from 'zustand/middleware';
 
 function App() {
   const suid = new ShortUniqueId();
-  const [count, setCount] = useState(0);
-
   const [allEditEntries, setAllEditEntries] = useState([]);
 
   const filter = useStore((state) => state.filter);
   const addEditItem = useStore((state) => state.addEditItem);
-  const patchItem = useStore((state) => state.patchItem);
-
   const importData = useStore((state) => state.importData);
-  // const alapData = useStore((state) => state.alapData);
+  const patchItem = useStore((state) => state.patchItem);
+  const editItems = useStore((state) => state.editItems);
 
   useEffect(() => {
     // Happens on mount
@@ -86,8 +82,6 @@ function App() {
     event.preventDefault();
 
     const link = event.dataTransfer.getData('Text');
-    // const addEditItem = useStore((state) => state.addEditItem);
-    // const patchItem = useStore((state) => state.patchItem);
 
     try {
       // need a better way of specifying where the netlify server is for dev..
@@ -128,7 +122,7 @@ function App() {
   return (
     <div className="bg-blue-800 min-h-screen " onDragEnter={handleDragEnter} onDragOver={handleDragOver} onDragEnd={handleDragEnd} onDrop={handleDrop}>
       <div className="fixed mx-auto w-full z-10  bg-opacity-60 ">
-        <div className="flex justify-center  gap-10    h-[calc(h-full_-_10rem)]  text-2xl p-4">
+        <div className="flex justify-center  gap-10 h-[calc(h-full_-_10rem)]  text-2xl p-4">
           {/* <!-- header --> */}
 
           <button className="bg-blue-600 text-yellow-200 p-4 rounded-lg  shadow-xl" onClick={createNewItem}>
@@ -149,8 +143,7 @@ function App() {
         </div>
         <div className="fixed ml-[22rem] p-4 flex-col  w-2/3 ">
           <TopTest alapConfig={alapConfig} />
-
-          <EditList />
+          {editItems.length ? <EditList /> : <InfoBlurb />}
         </div>
       </div>
     </div>
