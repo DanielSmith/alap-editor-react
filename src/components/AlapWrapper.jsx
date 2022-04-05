@@ -17,12 +17,6 @@ const AlapWrapper = ({ alapConfig }) => {
   const mev = {};
   let myAlap = null;
 
-  // useEffect(() => {
-  //   myAlap = new alap();
-  //   myAlap.configure({ alapConfig }, 'react');
-  //   myAlap.dumpConfig();
-  // }, [alap]);'
-
   if (!myAlap) {
     myAlap = new alap();
   }
@@ -104,15 +98,11 @@ const AlapWrapper = ({ alapConfig }) => {
       pageY: event.pageY,
     };
 
-    // myAlap.configure({ alapConfig }, 'react');
-
     setElementTargets(
       myAlap.processEvent(mev.theEventProperties, {
         ...alapData,
       })
     );
-
-    // console.log(elementTargets);
   };
 
   return (

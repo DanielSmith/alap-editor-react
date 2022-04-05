@@ -14,20 +14,14 @@ import { alapConfig } from './Config.js';
 
 function App() {
   const suid = new ShortUniqueId();
-  const [allEditEntries, setAllEditEntries] = useState([]);
-
-  const filter = useStore((state) => state.filter);
   const addEditItem = useStore((state) => state.addEditItem);
   const importData = useStore((state) => state.importData);
   const patchItem = useStore((state) => state.patchItem);
   const editItems = useStore((state) => state.editItems);
 
   useEffect(() => {
-    // Happens on mount
-
     // we may be getting incoming links which have no id
     const alapData = addItemIds(alapConfig);
-    // console.log(JSON.stringify(alapData));
     importData(alapData);
     return () => {
       // Optional; clean up before unmount
@@ -141,7 +135,7 @@ function App() {
           </div>
           <ItemList />
         </div>
-        <div className="fixed ml-[22rem] p-4 flex-col  w-2/3 ">
+        <div className="fixed ml-[22rem] p-4 flex-col w-2/3 ">
           <TopTest alapConfig={alapConfig} />
           {editItems.length ? <EditList /> : <InfoBlurb />}
         </div>

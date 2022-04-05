@@ -5,14 +5,12 @@ import ShortUniqueId from 'short-unique-id';
 
 import Dialog from './Dialog';
 
-import { XIcon, MinusCircleIcon, DuplicateIcon, CurrencyBangladeshiIcon } from '@heroicons/react/solid';
+import { XIcon, DuplicateIcon } from '@heroicons/react/solid';
 
 const ItemList = () => {
-  const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
   const filter = useStore((state) => state.filter);
 
-  const setItem = useStore((state) => state.setItem);
   const addEditItem = useStore((state) => state.addEditItem);
   const cancelEditItem = useStore((state) => state.cancelEditItem);
   const patchItem = useStore((state) => state.patchItem);
@@ -87,8 +85,6 @@ const ItemList = () => {
     // that we can clean up
     curEntryItem.originalItemID = `${item}_copy_${cloneName}`;
     curEntryItem.newItem = true;
-    // setItem(curEntryItem);
-    // alapData.allLinks[curEntryItem.itemID] = curEntryItem;
     patchItem(curEntryItem.itemID, curEntryItem);
     addEditItem(curEntryItem.itemID);
   };

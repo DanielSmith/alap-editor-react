@@ -10,10 +10,6 @@ const EditItem = ({ item }) => {
   const [cur, setCur] = useState(alapData.allLinks[item]);
   const [isExisting, setIsExisting] = useState(alapData.allLinks[item].newItem === true ? false : true);
 
-  // if (cur.newItem) {
-  //   setIsExisting(false);
-  // }
-
   const handleCancel = (item) => {
     cancelEditItem(item);
     if (!isExisting) {

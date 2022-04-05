@@ -1,13 +1,10 @@
-const box = document.getElementById('box');
-
 const setScrollbarFade = (elementId) => {
   const elem = document.getElementById(elementId);
 
   elem.addEventListener('mouseenter', () => {
-    elem.style.scrollbarColor = ' #2563EB #1E3A8A ';
+    elem.style.scrollbarColor = '#2563EB #1E3A8A';
 
     elem.classList.add('visible-scroll');
-
     elem.classList.remove('faded-scroll');
   });
 

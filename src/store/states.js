@@ -67,16 +67,6 @@ const useStore = create(
         editItems: state.editItems.filter((item) => item !== data),
       }));
     },
-
-    // filteredKeys() {
-    //   if (this.displayFilter === "") {
-    //     return Object.keys(this.alapData.allLinks).sort();
-    //   } else {
-    //     return Object.keys(this.alapData.allLinks)
-    //       .sort()
-    //       .filter((item) => item.toLowerCase().includes(this.displayFilter.toLowerCase()));
-    //   }
-    // },
   }))
 );
 

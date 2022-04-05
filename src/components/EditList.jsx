@@ -1,6 +1,4 @@
-import alap from 'alap';
 import { useEffect } from 'react';
-// import { toEditorSettings } from 'typescript';
 import { setScrollbarFade } from '../utils/scrollbars';
 import { useStore } from '../store/states';
 import EditItem from './EditItem';

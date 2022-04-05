@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { setTextRange } from 'typescript';
 import { useStore } from '../store/states';
 import AlapWrapper from './AlapWrapper';
 
 const TopTest = ({ alapConfig }) => {
-  const items = useStore((state) => state.items);
   const setSearchPhrase = useStore((state) => state.setSearchPhrase);
   const getSearchPhrase = useStore((state) => state.searchPhrase);
   const [search, setSearch] = useState(getSearchPhrase);
