@@ -5,6 +5,7 @@ import alap from 'alap';
 const AlapWrapper = ({ alapConfig }) => {
   const items = useStore((state) => state.items);
   const alapData = useStore((state) => state.alapData);
+  const searchPhrase = useStore((state) => state.searchPhrase);
 
   const [displayStatus, setDisplayStatus] = useState('hidden');
   const [elementTargets, setElementTargets] = useState({});
@@ -103,19 +104,21 @@ const AlapWrapper = ({ alapConfig }) => {
       pageY: event.pageY,
     };
 
+    // myAlap.configure({ alapConfig }, 'react');
+
     setElementTargets(
       myAlap.processEvent(mev.theEventProperties, {
-        ...alapConfig,
+        ...alapData,
       })
     );
 
-    //    console.log(ed);
+    // console.log(elementTargets);
   };
 
   return (
     <div className="relative flex flex-col" onMouseLeave={menuMouseLeaveHandler} onMouseEnter={menuMouseEnterHandler}>
-      <a className="alap text-gray-100 underlinetext-md cursor-pointer font-bold px-4 py-2 pr-6" data-alap-linkitems=".nyc" onClick={alapClick}>
-        My Sample Link....
+      <a className="alap text-gray-100 hover:underline text-md cursor-pointer font-bold px-4 py-2 pr-6" data-alap-linkitems={searchPhrase} onClick={alapClick}>
+        Sample Link....
       </a>
 
       <div id="alapElem" className={`absolute ${displayStatus}   z-10 w-[400px] mt-10 text-xl p-2 bg-blue-800`}>

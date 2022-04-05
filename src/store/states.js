@@ -8,6 +8,7 @@ const useStore = create(
     alapData: {},
     editItems: [],
     filter: null,
+    searchPhrase: '.nyc',
 
     importData: (data) =>
       set((state) => ({
@@ -30,8 +31,12 @@ const useStore = create(
       // })
     },
 
+    setSearchPhrase: (data) =>
+      set((state) => ({
+        searchPhrase: data,
+      })),
+
     patchItem: (whichItem, payload) => {
-      console.dir(payload);
       set(
         produce((draft) => {
           draft.alapData.allLinks[whichItem] = payload;
