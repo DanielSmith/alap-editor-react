@@ -134,7 +134,6 @@ function App() {
             </div>
           </div>
           <ItemList />
-          ....
         </div>
         <div className="fixed ml-[22rem] p-4 flex-col w-2/3 ">
           <TopTest alapConfig={alapConfig} />
