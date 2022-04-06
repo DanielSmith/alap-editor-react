@@ -72,22 +72,18 @@ function App() {
     return elems.join('_');
   };
 
-  const handleDrop = async (event) => {
-    event.preventDefault();
-
-    const link = event.dataTransfer.getData('Text');
-
+  const curDropPasteProcess = async (theLink) => {
     try {
       // need a better way of specifying where the netlify server is for dev..
       const res = await fetch('/.netlify/functions/get-site-data', {
         method: 'POST',
-        body: JSON.stringify({ sitelink: link }),
+        body: JSON.stringify({ sitelink: theLink }),
       });
 
       const data = await res.json();
       console.dir(data);
 
-      const url = data.res.url || link;
+      const url = data.res.url || theLink;
       let tags = createTagFromURL(url);
 
       if (data.res.keywords) {
@@ -111,6 +107,17 @@ function App() {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const handleDrop = async (event) => {
+    event.preventDefault();
+
+    const links = event.dataTransfer.getData('Text');
+    let linkArr = links.split(/[ \n]/g);
+
+    linkArr.map(async (curLink) => {
+      await curDropPasteProcess(curLink);
+    });
   };
 
   return (

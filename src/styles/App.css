@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .box {  
     scrollbar-color: #2563EB #1E3A8A;
     -moz-transition: scrollbar-color 0.5s ease-in;
