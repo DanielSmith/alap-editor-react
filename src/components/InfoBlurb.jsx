@@ -1,7 +1,7 @@
 const InfoBlurb = () => {
   return (
     <div className="pt-6 pr-4  h-[calc(90vh_-_10rem)] text-slate-100 text-xl ml-6 mt-6 leading-10 " id="editList">
-      <p className="w-2/3 mb-4">Alap Editor 1.0 (React version) - March 2022</p>
+      <p className="w-2/3 mb-4">Alap Editor 1.1 (React version) - March 2022</p>
       <p className="w-2/3 mb-4">
         How to edit items for alap-enabled links? This is a Proof of Concept. More background at{' '}
         <a target="fromAlap" className="hover:underline" href="https://alap.info/">
